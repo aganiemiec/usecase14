@@ -1,8 +1,29 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IndexViewModel
+@using UseCase14.CultureUtils
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer Localizer
+@{
+    ViewData["Title"] = Localizer["PageTitle"];
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">@Localizer["Welcome"]</h1>
+    <p>@Localizer["LanguageInfo"] @CultureInfo.CurrentCulture.DisplayName</a>.</p>
+    <hr/>
+    <p>@Localizer["YourLuckyNumber"] @Model.YourLuckyNumber.ToString()</p>
+    <hr/>
+    <p>@Localizer["CurrentDate"]
+        @Model.CurrentDate.ToString(CultureInfo.CurrentCulture) 
+       <br /> @Model.CurrentDate.ToLongDateString() 
+       <br /> @Model.CurrentDate.ToShortDateString()
+        <br /> @Model.CurrentDate.ToLongTimeString()
+       <br />  @Model.CurrentDate.ToShortTimeString()
+       <br />  @Model.CurrentDate.ToLocalTime()
+       <br />  @Model.CurrentDate.ToUniversalTime()</p>
+    <hr/>
+    <p>@Localizer["WeightOfMoon"] @DisplayCultureHelper.DisplayWeight(Model.WeightOfMoon) @Localizer["Unit"].</p>
+    <hr/>
+    <p>@Localizer["LengthOfFootballField"] @DisplayCultureHelper.DisplayLength(@Model.LengthOfFootballField) @Localizer["LengthUnit"]</p>
+    <hr/>
+    <p>@Localizer["CapacityOfGlass"] @DisplayCultureHelper.DisplayCapacity(Model.CapacityOfGlass) @Localizer["CapacityUnit"]</p>
+    <hr/>
 </div>

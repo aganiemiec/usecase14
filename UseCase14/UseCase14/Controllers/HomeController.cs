@@ -15,12 +15,16 @@ namespace UseCase14.Controllers
 
         public IActionResult Index()
         {
-            return View();
-        }
+            var model = new IndexViewModel
+            {
+                CurrentDate = DateTime.Now,
+                WeightOfMoon = 7347673E22,
+                YourLuckyNumber = new Random().Next(100),
+                LengthOfFootballField = 10000,
+                CapacityOfGlass = 0.250,
+            };
 
-        public IActionResult Privacy()
-        {
-            return View();
+            return View(model);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
